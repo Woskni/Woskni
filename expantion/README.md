@@ -1,3 +1,7 @@
+﻿
+# エディタ拡張
+エディタで編集する上での作業を楽にすることを目的としたエンジンの拡張クラスです
+
 ## ChangeActiveSelection.cs
 ### 概要
 - カンマ(`,`)キーで選択しているオブジェクトのアクティブ/非アクティブを切り替えます 
@@ -10,6 +14,8 @@
 - コンポーネントのアイコンは以下の定数から設定が変更できます
     - `icon_size`: 表示上のアイコンサイズ
     - `icon_transparency`: アイコンのアルファ値
+    - `ignore_components`: 表示をしないコンポーネント  
+	（`Transform`や`CanvasRenderer`など、表示されてなくとも支障のないコンポーネントに適用推奨）
 
 ### プレビュー
 ![ComponentGUI](https://github.com/Woskni/Woskni/assets/103394833/a580d69f-78d8-47b1-9c2b-b3145ed65883)
@@ -83,4 +89,4 @@
 ## Screenshot.cs
 ### 概要
 - ゲームウィンドウのスクリーンショットをPNG形式で保存します
-- 保存した画像は`Assets/Screenshot(yyyy-MM-dd[HH-mm-ss)`
+- 保存した画像は`Assets/Screenshot(yyyy-MM-dd[HH-mm-ss)`で保存されます

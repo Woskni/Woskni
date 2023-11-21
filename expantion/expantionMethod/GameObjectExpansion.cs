@@ -25,24 +25,24 @@ public static class GameObjectExpansion
 
 	/// <summary>レイヤーを変更</summary>
 	/// <param name="layer">レイヤー番号</param>
-	/// <param name="needSetChildrens">子オブジェクトのレイヤーも変更するか</param>
-	public static void SetLayer(this GameObject gameObject, int layer, bool needSetChildrens = true)
+	/// <param name="setChildren">子オブジェクトのレイヤーも変更するか</param>
+	public static void SetLayer(this GameObject gameObject, int layer, bool setChildren = true)
 	{
 		if (!gameObject) return;
 
 		gameObject.layer = layer;
 
-		if (!needSetChildrens) return;
+		if (!setChildren) return;
 
 		foreach (Transform childTransform in gameObject.transform)
-			SetLayer(childTransform.gameObject, layer, needSetChildrens);
+			SetLayer(childTransform.gameObject, layer, setChildren);
 	}
 
 	/// <summary>レイヤーを変更</summary>
 	/// <param name="layerName">レイヤー名</param>
-	/// <param name="needSetChildrens">子オブジェクトのレイヤーも変更するか</param>
-	public static void SetLayer(this GameObject gameObject, string layerName, bool needSetChildrens = true)
+	/// <param name="setChildren">子オブジェクトのレイヤーも変更するか</param>
+	public static void SetLayer(this GameObject gameObject, string layerName, bool setChildren = true)
 	{
-		SetLayer(gameObject, LayerMask.NameToLayer(layerName), needSetChildrens);
+		SetLayer(gameObject, LayerMask.NameToLayer(layerName), setChildren);
 	}
 }

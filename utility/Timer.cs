@@ -12,9 +12,6 @@ namespace woskni
     [System.Serializable]
     public struct Timer : IEquatable<Timer>
     {
-        /// <summary>タイマーの速度倍率</summary>
-        public float timeScale;
-
         /// <summary>現在の経過秒数</summary>
         public float time;
 
@@ -23,18 +20,18 @@ namespace woskni
 
         /// <summary>コンストラクタ</summary>
         /// <param name="limit">終了時間</param>
-        public Timer(float limit) { time = 0.0f; this.limit = limit; timeScale = 1f; }
+        public Timer(float limit, float timeScale = 1f) { time = 0.0f; this.limit = limit; }
 
         /// <summary>終了時間の初期設定</summary>
         /// <param name="limit">終了時間</param>
-        public void Setup(float limit) { time = 0.0f; this.limit = limit; timeScale = 1f; }
+        public void Setup(float limit, float timeScale = 1f) { time = 0.0f; this.limit = limit; }
 
         /// <summary>経過時間の初期化</summary>
-        public void Reset() { time = 0.0f; timeScale = 1f; }
+        public void Reset() { time = 0.0f; }
 
         /// <summary>タイマー更新</summary>
         /// <param name="affectScale">Time.timeScaleの影響を受けるか</param>
-        public void Update(bool affectScale = true) => time += affectScale ? Time.deltaTime * timeScale : Time.unscaledDeltaTime * timeScale;
+        public void Update(bool affectScale = true) => time += affectScale ? Time.deltaTime : Time.unscaledDeltaTime;
 
         /// <summary>タイマーを終了させる</summary>
         public void Fin() => time = limit;
@@ -42,7 +39,7 @@ namespace woskni
         /// <summary>開始済み検知</summary>
         public bool IsStarted() => time > 0f;
 
-        /// <summary>終了済み検知</summary>
+        /// <summary>終了検知</summary>
         public bool IsFinished() => time >= limit;
 
         /// <summary>デバッグログ</summary>
